@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Order Tracking - FlexFit</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at 15% 30%, rgba(255, 0, 0, 0.2) 0%, transparent 40%),
+                  radial-gradient(circle at 80% 90%, rgba(255, 0, 0, 0.2) 0%, transparent 40%),
+                  #0b0c2a;
+      font-family: 'Poppins', sans-serif;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 98px;
+      background-color: #00000000;
+      padding: 0 40px;
+      box-sizing: border-box;
+    }
+
+    .menu {
+      display: flex;
+      gap: 56px;
+    }
+
+    .menu div {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .menu a {
+      color: #fff;
+      text-decoration: none;
+      position: relative;
+    }
+
+    .menu a::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: #fff;
+      transition: width 0.3s;
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+    }
+
+    .menu a:hover::after {
+      width: 100%;
+    }
+
+    .button {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .icon {
+      display: flex;
+      gap: 16px;
+    }
+
+    .search img,
+    .shopping-bag {
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+    }
+
+    .flex-fit {
+      font-size: 36px;
+      font-weight: 600;
+    }
+
+    .flex-fit-span {
+      color: #a9d6cb;
+    }
+
+    .flex-fit-span2 {
+      color: #ffffff;
+    }
+
+    .logo-link {
+      text-decoration: none !important;
+      color: inherit !important;
+      cursor: pointer;
+    }
+
+    .page-buffer {
+      height: 100px;
+    }
+
+    h1 {
+      font-size: 36px;
+    }
+
+    .tracking-box {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 500px;
+      width: 90%;
+    }
+
+    .tracking-id {
+      font-size: 20px;
+      margin: 20px 0;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 10px;
+      border-radius: 5px;
+      user-select: all;
+    }
+
+    .track-btn {
+      padding: 12px 30px;
+      background-color: #ff3b3f;
+      color: white;
+      border: none;
+      font-size: 18px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .track-btn:hover {
+      background-color: #e62e2e;
+    }
+
+    .copied {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #a0ffb3;
+      display: none;
+    }
+
+    a {
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+      <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="flex-fit">
+      <a href="hero.html" class="logo-link">
+        <span class="flex-fit-span">Flex</span><span class="flex-fit-span2">Fit</span>
+      </a>
+    </div>
+
+    <div class="menu">
+      <div><a href="hero.html">Home</a></div>
+      <div><a href="product_polo.html">POLO</a></div>
+      <div><a href="product_roundneck.html">ROUND NECK</a></div>
+      <div><a href="ourdesigns.html">OUR DESIGNS</a></div>
+    </div>
+
+    <div class="button">
+      <div class="icon">
+        <div class="search">
+          <img src="images/layer-20.svg" alt="Search Icon"/>
+        </div>
+        <a href="cart.html">
+          <img class="shopping-bag" src="images/shopping-bag0.svg" alt="Shopping Bag"/>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-buffer"></div>
+
+
+  <div class="tracking-box">
+    <h1>Track Your Order</h1>
+    <p>Your Bluedart Air Tracking ID is:</p>
+    <div class="tracking-id" id="tracking-id">878629202002025</div>
+    <button class="track-btn" onclick="trackOrder()">Track Now</button>
+    <div class="copied" id="copied-msg">Tracking ID copied to clipboard!</div>
+  </div>
+
+  <script>
+    function trackOrder() {
+      const trackingId = document.getElementById("tracking-id").textContent;
+      
+      // Copy to clipboard
+      navigator.clipboard.writeText(trackingId).then(() => {
+        document.getElementById("copied-msg").style.display = 'block';
+        setTimeout(() => {
+          document.getElementById("copied-msg").style.display = 'none';
+        }, 2500);
+      });
+
+      // Open BlueDart tracking
+      const url = `https://www.bluedart.com/tracking?tracknumbers=${trackingId}`;
+      window.open(url, "_blank");
+    }
+  </script>
+
+</body>
+</html>

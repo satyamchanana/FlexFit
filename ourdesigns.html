@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FlexFit - Designs</title>
+  <style>
+    /* General Reset and Scroll Fix */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      overflow-x: hidden;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at 20% 30%, rgba(255, 0, 0, 0.2) 0%, transparent 40%),
+                  radial-gradient(circle at 80% 70%, rgba(255, 0, 0, 0.2) 0%, transparent 40%),
+                  #0b0c2a; /* Navy Blue Dark Theme */
+      color: #ffffff;
+    }
+
+    /* Hero Page Style Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 98px;
+      background-color: #00000000;
+      padding: 0 40px;
+    }
+
+    .menu {
+      display: flex;
+      gap: 56px;
+    }
+
+    .menu div {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .menu a {
+      color: #fff;
+      text-decoration: none;
+      position: relative;
+    }
+
+    .menu a::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: #fff;
+      transition: width 0.3s;
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+    }
+
+    .menu a:hover::after {
+      width: 100%;
+    }
+
+    .button {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .icon {
+      display: flex;
+      gap: 16px;
+    }
+
+    .search img,
+    .shopping-bag {
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+    }
+
+    .flex-fit {
+      font-size: 36px;
+      font-weight: 600;
+    }
+
+    .flex-fit-span {
+      color: #a9d6cb;
+    }
+
+    .flex-fit-span2 {
+      color: #ffffff;
+    }
+
+    .logo-link {
+      text-decoration: none !important;
+      color: inherit !important;
+      cursor: pointer;
+    }
+
+
+    /* Padding for fixed nav */
+    .page-buffer {
+      height: 100px;
+    }
+
+    /* Product Section Styling */
+    .product-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      padding: 3rem 5%;
+      justify-content: center;
+    }
+
+    .product {
+      background: #1b1c3a;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(255, 0, 0, 0.15);
+      width: 250px;
+      text-align: center;
+      padding: 1rem;
+      transition: transform 0.3s ease;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+    }
+
+    .product img {
+      width: 100%;
+      border-radius: 8px;
+      height: auto;
+    }
+
+    .product h3 {
+      margin: 0.5rem 0;
+      font-size: 1.2rem;
+      color: #fff;
+    }
+
+    .product p {
+      margin: 0.2rem 0;
+      color: #ccc;
+    }
+
+    .add-to-cart {
+      margin-top: 0.7rem;
+      padding: 0.5rem 1rem;
+      background-color: #ff3b3f;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .add-to-cart:hover {
+      background-color: #e62e2e;
+    }
+
+    /* Prevent overflow from causing scroll */
+    img, .product {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="flex-fit">
+      <a href="hero.html" class="logo-link">
+        <span class="flex-fit-span">Flex</span><span class="flex-fit-span2">Fit</span>
+      </a>
+    </div>
+  
+    <div class="menu">
+      <div><a href="hero.html">Home</a></div>
+      <div><a href="product_polo.html">POLO</a></div>
+      <div><a href="product_roundneck.html">ROUND NECK</a></div>
+      <div><a href="ourdesigns.html">OUR DESIGNS</a></div>
+    </div>
+  
+    <div class="button">
+      <div class="icon">
+        <div class="search">
+          <img src="images/layer-20.svg" alt="Search Icon"/>
+        </div>
+        <!-- Cart Button -->
+        <a href="cart.html">
+          <img class="shopping-bag" src="images/shopping-bag0.svg" alt="Shopping Bag"/>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- Spacer for Fixed Navbar -->
+  <div class="page-buffer"></div>
+
+  <!-- PRODUCT CARDS -->
+  <section class="product-container">
+    <div class="product">
+      <img src="designs/design1.png" alt="Design 1">
+      <h3>Street Style Tee</h3>
+      <p>₹699</p>
+      <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <img src="designs/design2.png" alt="Design 2">
+      <h3>Minimal Logo Tee</h3>
+      <p>₹699</p>
+      <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <img src="designs/design3.png" alt="Design 3">
+      <h3>FlexFit Signature</h3>
+      <p>₹799</p>
+      <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <img src="designs/design4.png" alt="Design 4">
+      <h3>Bold Type Tee</h3>
+      <p>₹699</p>
+      <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+    </div>
+  </section>
+<!-- Product Section 2 -->
+  <section class="product-container">
+    <div class="product">
+      <img src="designs/design5.png" alt="Design 1">
+      <h3>Street Style Tee</h3>
+      <p>₹799</p>
+      <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <img src="designs/design6.png" alt="Design 2">
+      <h3>Minimal Logo Tee</h3>
+      <p>₹799</p>
+      <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <img src="designs/design1.png" alt="Design 3">
+      <h3>FlexFit Signature</h3>
+      <p>₹699</p>
+      <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <img src="designs/design2.png" alt="Design 4">
+      <h3>Bold Type Tee</h3>
+      <p>₹699</p>
+      <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+    </div>
+  </section>
+
+<!--Section 3-->
+
+<section class="product-container">
+  <div class="product">
+    <img src="designs/design3.png" alt="Design 1">
+    <h3>Street Style Tee</h3>
+    <p>₹799</p>
+    <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="designs/design4.png" alt="Design 2">
+    <h3>Minimal Logo Tee</h3>
+    <p>₹699</p>
+    <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="designs/design5.png" alt="Design 3">
+    <h3>FlexFit Signature</h3>
+    <p>₹799</p>
+    <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="designs/design6.png" alt="Design 4">
+    <h3>Bold Type Tee</h3>
+    <p>₹799</p>
+    <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+  </div>
+</section>
+
+<script>
+  function addToCart() {
+    alert("Item added to cart!(To be worked on)");
+  }
+</script>
+</body>
+</html>

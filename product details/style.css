@@ -1,0 +1,86 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+    background: #0f0f1a;
+    overflow-x: hidden;
+  }
+  
+  .background-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 255, 0.1); /* Blue overlay */
+  }
+  
+  .glow-circle {
+    position: absolute;
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+    background: red;
+    filter: blur(150px);
+    opacity: 0.4;
+  }
+  
+  .red-glow {
+    top: 20%;
+    left: 10%;
+  }
+  
+  .red-glow.second {
+    top: 70%;
+    left: 70%;
+  }
+  
+  .product-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 20px;
+    text-align: center;
+  }
+  
+  .product-image img {
+    width: 300px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
+  }
+  
+  .product-title {
+    font-size: 2.5em;
+    margin: 10px 0;
+  }
+  
+  .product-description {
+    font-size: 1.1em;
+    margin: 10px 0;
+    color: #cccccc;
+  }
+  
+  .product-price {
+    font-size: 1.8em;
+    margin: 20px 0;
+    color: #ff5252;
+  }
+  
+  .buy-button {
+    background: #ff0000;
+    color: white;
+    padding: 12px 30px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .buy-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px red;
+  }
+  

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FlexFit Cart</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at 15% 30%, rgba(255, 0, 0, 0.2) 0%, transparent 40%),
+                  radial-gradient(circle at 80% 90%, rgba(255, 0, 0, 0.2) 0%, transparent 40%),
+                  #0b0c2a;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 98px;
+      background-color: #00000000;
+      padding: 0 40px;
+      box-sizing: border-box;
+    }
+
+    .menu {
+      display: flex;
+      gap: 56px;
+    }
+
+    .menu div {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .menu a {
+      color: #fff;
+      text-decoration: none;
+      position: relative;
+    }
+
+    .menu a::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: #fff;
+      transition: width 0.3s;
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+    }
+
+    .menu a:hover::after {
+      width: 100%;
+    }
+
+    .button {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .icon {
+      display: flex;
+      gap: 16px;
+    }
+
+    .search img,
+    .shopping-bag {
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+    }
+
+    .flex-fit {
+      font-size: 36px;
+      font-weight: 600;
+    }
+
+    .flex-fit-span {
+      color: #a9d6cb;
+    }
+
+    .flex-fit-span2 {
+      color: #ffffff;
+    }
+
+    .logo-link {
+      text-decoration: none !important;
+      color: inherit !important;
+      cursor: pointer;
+    }
+
+    .page-buffer {
+      height: 100px;
+    }
+    <!---->
+    .cart-container {
+      max-width: 800px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      padding-bottom: 10px;
+    }
+
+    .cart-item img {
+      width: 100px;
+      border-radius: 5px;
+    }
+
+    .item-details {
+      flex: 1;
+      margin-left: 20px;
+    }
+
+    .price {
+      font-size: 18px;
+    }
+
+    .summary {
+      margin-top: 30px;
+      font-size: 18px;
+    }
+
+    .strikethrough {
+      text-decoration: line-through;
+      color: #ff7b7b;
+      font-size: 16px;
+      margin-top: 4px;
+    }
+
+    .checkout-btn {
+      margin-top: 20px;
+      padding: 10px 25px;
+      font-size: 18px;
+      background-color: #ff3b3f;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .checkout-btn:hover {
+      background-color: #e62e2e;
+    }
+
+    .remove-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding-left: 12px;
+      display: flex;
+      align-items: center;
+    }
+
+    .trash-icon {
+      width: 24px;
+      height: 24px;
+      stroke: white;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    .trash-icon .lid {
+      transition: transform 0.3s ease;
+      transform-origin: left center;
+    }
+
+    .remove-btn:hover .lid {
+      transform: rotate(-30deg) translate(-3px, -3px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="flex-fit">
+      <a href="hero.html" class="logo-link">
+        <span class="flex-fit-span">Flex</span><span class="flex-fit-span2">Fit</span>
+      </a>
+    </div>
+
+    <div class="menu">
+      <div><a href="hero.html">Home</a></div>
+      <div><a href="product_polo.html">POLO</a></div>
+      <div><a href="product_roundneck.html">ROUND NECK</a></div>
+      <div><a href="ourdesigns.html">OUR DESIGNS</a></div>
+    </div>
+
+    <div class="button">
+      <div class="icon">
+        <div class="search">
+          <img src="images/layer-20.svg" alt="Search Icon"/>
+        </div>
+        <a href="cart.html">
+          <img class="shopping-bag" src="images/shopping-bag0.svg" alt="Shopping Bag"/>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-buffer"></div>
+
+  <!-- Cart -->
+  <div class="cart-container">
+    <h2>Your Cart</h2>
+
+    <div class="cart-item">
+      <img src="images/poloblack1.png" alt="Polo T-Shirt">
+      <div class="item-details">
+        <p>FlexFit Polo - Black</p>
+        <p>Size: M</p>
+        <p class="price">₹799</p>
+      </div>
+      <button class="remove-btn" onclick="removeItem(this)" aria-label="Remove item">
+        <svg class="trash-icon" viewBox="0 0 24 24">
+          <path class="lid" d="M3 6h18" />
+          <path class="can" d="M6 6v14h12V6H6zm3 3h2v8h-2V9zm4 0h2v8h-2V9z" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="cart-item">
+      <img src="images/polowhite1.png" alt="Polo T-Shirt White">
+      <div class="item-details">
+        <p>FlexFit Polo - White</p>
+        <p>Size: L</p>
+        <p class="price">₹799</p>
+      </div>
+      <button class="remove-btn" onclick="removeItem(this)" aria-label="Remove item">
+        <svg class="trash-icon" viewBox="0 0 24 24">
+          <path class="lid" d="M3 6h18" />
+          <path class="can" d="M6 6v14h12V6H6zm3 3h2v8h-2V9zm4 0h2v8h-2V9z" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="summary">
+      <p>Subtotal: ₹1598</p>
+      <p class="strikethrough">Delivery Fee (₹40 x 2 items): ₹80</p>
+      <p>Tax (18%): ₹288</p>
+      <p><strong>Total: ₹1886</strong></p>
+    </div>
+
+    <a href="checkout.html" class="checkout-btn">Proceed to Checkout</a>
+  </div>
+
+  <script>
+    function removeItem(button) {
+      const item = button.closest('.cart-item');
+      item.remove();
+      updateCart();
+    }
+
+    function updateCart() {
+      const prices = document.querySelectorAll('.cart-item .price');
+      let subtotal = 0;
+      prices.forEach(p => {
+        subtotal += parseInt(p.textContent.replace('₹', ''));
+      });
+
+      const tax = Math.round(subtotal * 0.18);
+      const itemCount = prices.length;
+      const deliveryFee = itemCount * 40;
+
+      document.querySelector('.summary').innerHTML = `
+  <p>Subtotal: ₹${subtotal}</p>
+  <p class="strikethrough">Delivery Fee (₹40 x ${itemCount} items): ₹${deliveryFee}</p>
+  <p>Tax (18%): ₹${tax}</p>
+  <p><strong>Total: ₹${subtotal + tax}</strong></p>
+`;
+    }
+    window.onload = updateCart;
+  </script>
+
+</body>
+</html>

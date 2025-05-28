@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FlexFit Checkout</title>
+  <style>   html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    background: radial-gradient(circle at 15% 30%, rgba(255, 0, 0, 0.2) 0%, transparent 40%),
+                radial-gradient(circle at 80% 90%, rgba(255, 0, 0, 0.2) 0%, transparent 40%),
+                #0b0c2a;
+    color: #ffffff;
+    overflow-x: hidden;
+  }
+
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 98px;
+    background-color: #00000000;
+    padding: 0 40px;
+    box-sizing: border-box;
+  }
+
+  .menu {
+    display: flex;
+    gap: 56px;
+  }
+
+  .menu div {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .menu a {
+    color: #fff;
+    text-decoration: none;
+    position: relative;
+  }
+
+  .menu a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #fff;
+    transition: width 0.3s;
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+  }
+
+  .menu a:hover::after {
+    width: 100%;
+  }
+
+  .button {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+  }
+
+  .icon {
+    display: flex;
+    gap: 16px;
+  }
+
+  .search img,
+  .shopping-bag {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+  }
+
+  .flex-fit {
+    font-size: 36px;
+    font-weight: 600;
+  }
+
+  .flex-fit-span {
+    color: #a9d6cb;
+  }
+
+  .flex-fit-span2 {
+    color: #ffffff;
+  }
+
+  .logo-link {
+    text-decoration: none !important;
+    color: inherit !important;
+    cursor: pointer;
+  }
+
+  .page-buffer {
+    height: 100px;
+  }
+
+  .checkout-container {
+    max-width: 800px;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 100px;
+  }
+
+  .checkout-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .checkout-form label {
+    font-size: 18px;
+  }
+
+  .checkout-form input {
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #fff;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    width: 100%;
+  }
+
+  .phone-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .phone-prefix {
+    flex: 1;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #fff;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    text-align: center;
+  }
+
+  .phone-input {
+    flex: 3;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #fff;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    width: 100%;
+  }
+
+  .error {
+    color: red;
+    font-size: 14px;
+  }
+
+  .strikethrough {
+    text-decoration: line-through;
+    color: #ff7b7b;
+    font-size: 16px;
+    margin-top: 4px;
+  }
+
+  .checkout-btn {
+    padding: 10px 25px;
+    font-size: 18px;
+    background-color: #ff3b3f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .checkout-btn:hover {
+    background-color: #e62e2e;
+  }
+
+  .price-container {
+    font-size: 18px;
+    margin-top: 20px;
+  }
+
+  .price-container p {
+    font-size: 16px;
+    margin: 5px 0;
+  }
+
+  .total-price {
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .vertical-line {
+    height: 30px;
+    width: 2px;
+    background-color: white;
+    margin: 0 10px;
+  }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="flex-fit">
+      <a href="hero.html" class="logo-link">
+        <span class="flex-fit-span">Flex</span><span class="flex-fit-span2">Fit</span>
+      </a>
+    </div>
+
+    <div class="menu">
+      <div><a href="hero.html">Home</a></div>
+      <div><a href="product_polo.html">POLO</a></div>
+      <div><a href="product_roundneck.html">ROUND NECK</a></div>
+      <div><a href="ourdesigns.html">OUR DESIGNS</a></div>
+    </div>
+
+    <div class="button">
+      <div class="icon">
+        <div class="search">
+          <img src="images/layer-20.svg" alt="Search Icon"/>
+        </div>
+        <a href="cart.html">
+          <img class="shopping-bag" src="images/shopping-bag0.svg" alt="Shopping Bag"/>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="page-buffer"></div>
+
+  <!-- Checkout Form -->
+  <div class="checkout-container">
+    <h2>Checkout</h2>
+    <form id="checkout-form" class="checkout-form" method="GET" action="payment.html">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required />
+      <div class="error" id="name-error"></div>
+
+      <label for="address">Address</label>
+      <input type="text" id="address" name="address" required />
+      <div class="error" id="address-error"></div>
+
+      <label for="zip">ZIP Code</label>
+      <input type="text" id="zip" name="zip" required maxlength="6" pattern="\d{6}" />
+      <div class="error" id="zip-error"></div>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required />
+      <div class="error" id="email-error"></div>
+
+      <label for="phone">Phone</label>
+      <div class="phone-container">
+        <input type="text" class="phone-prefix" value="+91" disabled />
+        <div class="vertical-line"></div>
+        <input type="tel" class="phone-input" id="phone" name="phone" required maxlength="10" />
+      </div>
+      <div class="error" id="phone-error"></div>
+
+      <div class="price-container">
+        <p>Subtotal: ₹1598</p><div class="strikethrough">
+          Delivery Fee (₹40 x 2 items): ₹80
+        </div>
+        <p>Tax (18%): ₹288</p>
+        <p class="total-price">Total: ₹1886</p>
+      </div>
+
+      <button type="submit" class="checkout-btn">Proceed to Payment</button>
+    </form>
+  </div>
+
+  <script>
+    // Validation and form submission
+    const form = document.getElementById('checkout-form');
+
+    form.addEventListener('submit', function(event) {
+      let valid = true;
+
+      // Reset previous error messages
+      document.querySelectorAll('.error').forEach(error => error.textContent = '');
+
+      // Check all required fields
+      if (!document.getElementById('name').value) {
+        valid = false;
+        document.getElementById('name-error').textContent = 'Please enter your name.';
+      }
+
+      if (!document.getElementById('address').value) {
+        valid = false;
+        document.getElementById('address-error').textContent = 'Please enter your address.';
+      }
+
+      if (!document.getElementById('zip').value || document.getElementById('zip').value.length !== 6) {
+        valid = false;
+        document.getElementById('zip-error').textContent = 'Please enter a valid 6-digit ZIP code.';
+      }
+
+      if (!document.getElementById('email').value) {
+        valid = false;
+        document.getElementById('email-error').textContent = 'Please enter a valid email.';
+      }
+
+      if (!document.getElementById('phone').value || document.getElementById('phone').value.length !== 10) {
+        valid = false;
+        document.getElementById('phone-error').textContent = 'Please enter a valid 10-digit phone number.';
+      }
+
+      if (!valid) {
+        event.preventDefault(); // Prevent form submission if validation fails
+      }
+    });
+  </script>
+
+</body>
+</html>

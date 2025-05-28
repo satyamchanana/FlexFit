@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Customize T-Shirt - FlexFit</title>
+  <style>
+   html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at 15% 30%, rgba(255, 0, 0, 0.2) 0%, transparent 40%),
+                  radial-gradient(circle at 80% 90%, rgba(255, 0, 0, 0.2) 0%, transparent 40%),
+                  #0b0c2a;
+      color: #ffffff;
+      overflow: hidden;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 98px;
+      background-color: #00000000;
+      padding: 0 40px;
+      box-sizing: border-box;
+    }
+
+    .menu {
+      display: flex;
+      gap: 56px;
+    }
+
+    .menu div {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .menu a {
+      color: #fff;
+      text-decoration: none;
+      position: relative;
+    }
+
+    .menu a::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: #fff;
+      transition: width 0.3s;
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+    }
+
+    .menu a:hover::after {
+      width: 100%;
+    }
+
+    .button {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .icon {
+      display: flex;
+      gap: 16px;
+    }
+
+    .search img,
+    .shopping-bag {
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+    }
+
+    .flex-fit {
+      font-size: 36px;
+      font-weight: 600;
+    }
+
+    .flex-fit-span {
+      color: #a9d6cb;
+    }
+
+    .flex-fit-span2 {
+      color: #ffffff;
+    }
+
+    .logo-link {
+      text-decoration: none !important;
+      color: inherit !important;
+      cursor: pointer;
+    }
+
+    .page-buffer {
+      height: 100px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: calc(100vh - 100px);
+      position: relative;
+      left:-130px;
+    }
+
+    .red-box {
+      width: 400px;
+      height: 500px;
+      background-color: rgba(255, 0, 0, 0.35);
+      position: absolute;
+      left: 50%;
+      transform: translateX(-60%);
+      z-index: 0;
+      border-radius: 10%;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+    }
+
+    .blue-box {
+      width: 340px;
+      height: 420px;
+      background-color: rgba(8, 73, 186, 0.5);
+      position: absolute;
+      left: 50%;
+      transform: translateX(40%);
+      z-index: 1;
+      padding: 20px;
+      color: white;
+      border-radius: 10%;
+      box-shadow: 0 0 20px rgba(0, 191, 255, 0.4);
+    }
+
+    .blue-box h2 {
+      margin-top: 0;
+    }
+
+    canvas {
+      background-image: url('images/roundneckblack.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      border-radius: 20px;
+      width: 380px;
+      height: 450px;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .btn-group button {
+      background-color: #ff3b3f;
+      color: white;
+      border: none;
+      padding: 10px;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .btn-group button:hover {
+      background-color: #e62e2e;
+    }
+
+    .btn-group input {
+      background-color: white;
+      color: black;
+      padding: 6px;
+      border-radius: 6px;
+      margin-top: 8px;
+    }
+
+
+    .switch-view {
+      margin-top: 10px;
+      cursor: pointer;
+      color: #00f6ff;
+      text-decoration: underline;
+    }
+
+    .selector-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.selector-group label {
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+.selector-group select {
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  background-color: #ffffff;
+  color: #000;
+  font-weight: bold;
+}
+
+
+.selectors-inline {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.circle-select {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+}
+
+#type-round {
+  background: radial-gradient(circle, rgba(255,0,0,0.4), transparent);
+}
+#type-polo {
+  background: radial-gradient(circle, rgba(0,0,255,0.4), transparent);
+}
+
+#color-black {
+  border-color: #fff;
+}
+#color-white {
+  border-color: #333;
+}
+
+.upload-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.upload-row input[type="file"] {
+  font-size: 10px;
+  flex-grow: 1;
+  padding: 4px;
+}
+
+.icon-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 9px;
+  scale: 1.3;
+}
+.shirt-options-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+#shirtTypeDropdown {
+  flex: 1;
+  padding: 6px 8px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+}
+
+.color-selector-inline {
+  display: flex;
+  gap: 8px;
+}
+
+.circle-select {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+}
+.shirt-type-color-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+#shirtTypeDropdown {
+  flex: 1;
+  padding: 6px 10px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  background-color: white;
+  color: black;
+  font-weight: bold;
+}
+
+.color-options {
+  display: flex;
+  gap: 10px;
+}
+
+.color-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+  position: relative;
+}
+
+.color-circle.black {
+  background-color: black;
+}
+
+.color-circle.white {
+  background-color: white;
+}
+
+.color-circle.selected::after {
+  content: '';
+  display: block;
+  width: 14px;
+  height: 14px;
+  background: white;
+  border-radius: 50%;
+  margin: 7px auto;
+}
+
+.color-circle.white.selected::after {
+  background: black;
+}
+
+
+.remove-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding-left: 12px;
+      display: flex;
+      align-items: center;
+    }
+
+    .trash-icon {
+      width: 24px;
+      height: 24px;
+      stroke: white;
+      fill: none;
+      stroke-width: 2;
+      padding-top: -19px;
+    }
+
+    .trash-icon .lid {
+      transition: transform 0.3s ease;
+      transform-origin: left center;
+    }
+
+    .remove-btn:hover .lid {
+      transform: rotate(-30deg) translate(-3px, -3px);
+    }
+
+.text-controls-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.undo-redo-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.font-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.font-controls select,
+.font-controls input[type="number"],
+.font-controls input[type="color"] {
+  padding: 6px;
+  border-radius: 4px;
+  border: none;
+  font-weight: bold;
+}
+
+
+@font-face {
+  font-family: 'Minecraftia';
+  src: url('fonts/Minecraftia.ttf') format('truetype');
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="flex-fit">
+      <a href="hero.html" class="logo-link">
+        <span class="flex-fit-span">Flex</span><span class="flex-fit-span2">Fit</span>
+      </a>
+    </div>
+
+    <div class="menu">
+      <div><a href="hero.html">Home</a></div>
+      <div><a href="product_polo.html">POLO</a></div>
+      <div><a href="product_roundneck.html">ROUND NECK</a></div>
+      <div><a href="ourdesigns.html">OUR DESIGNS</a></div>
+    </div>
+
+    <div class="button">
+      <div class="icon">
+        <div class="search">
+          <img src="images/layer-20.svg" alt="Search Icon"/>
+        </div>
+        <a href="cart.html">
+          <img class="shopping-bag" src="images/shopping-bag0.svg" alt="Shopping Bag"/>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-buffer"></div>
+
+  <div class="container">
+    <div class="red-box">
+      <canvas id="canvas" width="380" height="450"></canvas>
+    </div>
+    <div class="blue-box">
+        <h2>Customize Your Tee</h2>
+
+        <div class="shirt-type-color-row">
+            <select id="shirtTypeDropdown" onchange="setShirtType(this.value)">
+              <option value="roundneck">Round Neck</option>
+              <option value="polo">Polo</option>
+            </select>
+          
+            <div class="color-options">
+              <div class="color-circle black selected" data-color="black" onclick="switchColor('black')"></div>
+              <div class="color-circle white" data-color="white" onclick="switchColor('white')"></div>
+            </div>
+          </div>
+        
+          <div class="upload-row">
+            <input type="file" id="uploadImage" accept="image/*">
+            <div style="display: flex; gap: 10px;">
+              <div class="icon-button" onclick="switchSide()" title="Switch Side">
+                <img src="images/redo-icon.svg" style="width: 20px; height: 20px;">
+              </div>
+              
+                <button class="remove-btn" onclick="clearCanvas()" aria-label="Remove item">
+                  <svg class="trash-icon" viewBox="0 0 24 24">
+                    <path class="lid" d="M3 6h18" />
+                    <path class="can" d="M6 6v14h12V6H6zm3 3h2v8h-2V9zm4 0h2v8h-2V9z" />
+                  </svg>
+                </button>
+              
+            </div>
+          </div>
+          
+        
+        <div class="btn-group">
+
+
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
+            
+            <div class="text-controls-row">
+              <div class="undo-redo-buttons">
+                <button onclick="undo()">↶ Undo</button>
+                <button onclick="redo()">↷ Redo</button>
+              </div>
+              
+
+              <div class="scale-controls" style="margin-top: 10px; text-align: center;">
+                <label for="scaleSlider">Scale:</label>
+                <input
+                  type="range"
+                  id="scaleSlider"
+                  min="0.1"
+                  max="7"
+                  step="0.05"
+                  value="1"
+                  oninput="handleScaleSlider(this.value)"
+                  style="width: 200px;"
+                />
+              </div>
+              
+              
+
+              <input type="text" id="customText" placeholder="Enter Text" />
+              
+          <button onclick="addText()">Add Text</button>
+
+
+              <div class="font-controls">
+                <input type="color" id="fontColor" value="#ffffff" title="Font Color" />
+                <select id="fontFamily">
+                  <option value="Poppins">Poppins</option>
+                  <option value="Arial">Arial</option>
+                  <option value="Courier New">Courier New</option>
+                  <option value="Minecraftia">Minecraftia</option>
+                </select>
+                <input type="number" id="fontSize" min="10" max="100" value="20" style="width: 60px;" />
+              </div>
+            </div>
+            
+             
+          <button onclick="addToCart()">Add to Cart</button>
+          <div id="priceDisplay" style="margin-top: 0px; font-weight: bold; font-size: 18px;">Price: ₹0</div>
+          
+          <button onclick="downloadCanvas()">Download PNG</button> 
+        </div>
+        
+        
+  
+
+  <script>
+
+let currentType = 'roundneck';
+let currentColor = 'black';         
+                                // to be changed for different pages *****
+
+
+ const designArea = {
+  x: 115,
+  y: 100,
+  width: 155,
+  height: 240
+};            // to edit the design area *****
+
+
+const prices = {
+  roundneck: 699,
+  polo: 799,
+  front: 45,
+  back: 65
+};
+
+
+function drawDesignArea() {
+  ctx.save();
+  ctx.strokeStyle = 'rgba(0,255,0,0.3)';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(designArea.x, designArea.y, designArea.width, designArea.height);
+  ctx.restore();
+}                   // to be removed for final version *****
+
+
+function updatePrice() {
+    let price = prices[currentType];
+
+  // Construct front and back keys for this shirt
+  const frontKey = currentSide.replace(/1|2$/, '1');
+  const backKey = currentSide.replace(/1|2$/, '2');
+
+  const hasFront = elements.some(e => e.side === frontKey);
+  const hasBack = elements.some(e => e.side === backKey);
+
+  if (hasFront) price += prices.front;
+  if (hasBack) price += prices.back;
+
+  document.getElementById('priceDisplay').textContent = `Price: ₹${price}`;
+}
+
+
+
+  function switchColor(color) {
+    document.querySelectorAll('.color-circle').forEach(c => c.classList.remove('selected'));
+    document.querySelector(`.color-circle.${color}`).classList.add('selected');
+
+    currentColor = color;
+    updateBackground(); // or any function that applies the shirt preview
+  }
+
+  function setShirtType(type) {
+    currentType = type;
+    updateBackground(); // update the preview shirt image
+  }
+
+  function saveState() {
+  undoStack.push(JSON.parse(JSON.stringify(elements)));
+  redoStack = []; // clear redo on new action
+}
+
+
+let originalSize = null;
+
+function handleScaleSlider(value) {
+  if (selected && selected.type === 'image') {
+    const scale = parseFloat(value);
+
+    // Save original size only once when slider is first used
+    if (!originalSize) {
+      originalSize = { w: selected.w, h: selected.h };
+    }
+
+    selected.w = originalSize.w * scale;
+    selected.h = originalSize.h * scale;
+
+    drawAll();
+  }
+}
+
+
+
+
+    let canvas = document.getElementById('canvas');
+    let ctx = canvas.getContext('2d');
+    let elements = [];
+    let selected = null;
+    let isDragging = false;
+    let currentSide = '1';
+    let undoStack = [];
+    let redoStack = [];
+
+
+    const backgrounds = {
+  front: {
+    roundneck: {
+      black: 'images/roundneckblack1.png',
+      white: 'images/roundneckwhite1.png'
+    },
+    polo: {
+      black: 'images/poloblack1.png',
+      white: 'images/polowhite1.png'
+    }
+  },
+  back: {
+    roundneck: {
+      black: 'images/roundneckblack2.png',
+      white: 'images/roundneckwhite2.png'
+    },
+    polo: {
+      black: 'images/poloback2.png',
+      white: 'images/polowhite2.png'
+    }
+  }
+};
+
+function addText() {
+  const txt = document.getElementById('customText').value;
+  if (!txt) return;
+
+  const color = document.getElementById('fontColor').value;
+  const font = document.getElementById('fontFamily').value;
+  const fontSize = parseInt(document.getElementById('fontSize').value) || 20;
+
+  saveState();
+  elements.push({
+    type: 'text',
+    content: txt,
+    x: designArea.x + 50,
+    y: designArea.y + 50,
+    fontSize,
+    font,
+    color,
+    side: currentSide
+  });
+
+  drawAll();
+}
+
+
+
+function drawAll() {
+  const sideKey = currentSide === '1' ? 'front' : 'back';
+  const bgSrc = backgrounds[sideKey][currentType][currentColor];
+
+  const bg = new Image();
+  bg.src = bgSrc;
+  bg.onload = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(bg, 0, 0, canvas.width, canvas.height);
+
+    elements.forEach(el => {
+      if (el.side === currentSide) {
+        if (el.type === 'text') {
+          el.fontSize = el.fontSize || 20;
+          el.font = el.font || 'Poppins';
+          el.color = el.color || 'white';
+
+          ctx.font = `${el.fontSize}px '${el.font}'`;
+          ctx.fillStyle = el.color;
+          ctx.fillText(el.content, el.x, el.y);
+        } else if (el.type === 'image') {
+          ctx.drawImage(el.image, el.x, el.y, el.w, el.h);
+        }
+      }
+    });
+  };
+
+  updatePrice();
+}
+
+function updateBackground() {
+  drawAll();
+}
+
+function setShirtColor(color) {
+  currentColor = color;
+  updateBackground();
+}
+
+
+function undo() {
+  if (undoStack.length > 0) {
+    redoStack.push(JSON.parse(JSON.stringify(elements)));
+    elements = undoStack.pop();
+    drawAll();
+  }
+}
+
+function redo() {
+  if (redoStack.length > 0) {
+    undoStack.push(JSON.parse(JSON.stringify(elements)));
+    elements = redoStack.pop();
+    drawAll();
+  }
+}
+
+
+
+    document.getElementById('uploadImage').addEventListener('change', function (e) {
+      const file = e.target.files[0];
+      const img = new Image();
+      img.onload = () => {
+  elements.push({
+    type: 'image',
+    image: img,
+    x: designArea.x + 50,
+    y: designArea.y + 50,
+    w: 100,
+    h: 100,
+    side: currentSide
+  });
+  drawAll();
+};
+
+      img.src = URL.createObjectURL(file);
+    });
+
+    canvas.addEventListener('mousedown', function (e) {
+      const mouseX = e.offsetX;
+      const mouseY = e.offsetY;
+      for (let i = elements.length - 1; i >= 0; i--) {
+        let el = elements[i];
+        if (el.side !== currentSide) continue;
+        if (el.type === 'text') {
+          const textWidth = ctx.measureText(el.content).width;
+          if (mouseX >= el.x && mouseX <= el.x + textWidth && mouseY >= el.y - 20 && mouseY <= el.y) {
+            selected = el;
+            isDragging = true;
+            break;
+          }
+        } else if (el.type === 'image') {
+          if (mouseX >= el.x && mouseX <= el.x + el.w && mouseY >= el.y && mouseY <= el.y + el.h) {
+            selected = el;
+            isDragging = true;
+            break;
+          }
+        }
+      }
+    
+  elements.forEach(el => {
+    if (isInside(mouse, el)) {
+      selected = el;
+      
+      if (selected.type === 'image') {
+        originalSize = { w: selected.w, h: selected.h };
+        document.getElementById('scaleSlider').value = 1;
+      }
+
+      offsetX = mouse.x - el.x;
+      offsetY = mouse.y - el.y;
+      isDragging = true;
+    }
+  });
+
+  drawAll();
+});
+
+
+    canvas.addEventListener('mousemove', function (e) {
+  if (isDragging && selected) {
+    let offsetX = e.offsetX;
+    let offsetY = e.offsetY;
+
+    const elWidth = selected.w || ctx.measureText(selected.content).width;
+    const elHeight = selected.h || selected.fontSize || 20;
+
+    selected.x = Math.max(designArea.x, Math.min(offsetX - elWidth / 2, designArea.x + designArea.width - elWidth));
+    selected.y = Math.max(designArea.y, Math.min(offsetY, designArea.y + designArea.height - elHeight));
+
+    drawAll();
+  }
+});
+
+
+canvas.addEventListener('wheel', function (e) {
+  if (selected) {
+    e.preventDefault();
+    if (selected.type === 'image') {
+      const factor = e.deltaY < 0 ? 1.05 : 0.95;
+      const newW = selected.w * factor;
+      const newH = selected.h * factor;
+
+      // Ensure new size fits within design area
+      if (
+        selected.x + newW <= designArea.x + designArea.width &&
+        selected.y + newH <= designArea.y + designArea.height &&
+        newW >= 30 && newH >= 30
+      ) {
+        selected.w = newW;
+        selected.h = newH;
+      }
+
+    } else if (selected.type === 'text') {
+      selected.fontSize = selected.fontSize || 20;
+      const newFontSize = selected.fontSize + (e.deltaY < 0 ? 2 : -2);
+      if (newFontSize >= 10 && selected.x + ctx.measureText(selected.content).width <= designArea.x + designArea.width) {
+        selected.fontSize = newFontSize;
+      }
+    }
+    drawAll();
+  }
+});
+
+
+
+
+
+    canvas.addEventListener('mouseup', () => {
+      isDragging = false;
+      selected = null;
+    });
+
+    function clearCanvas() {
+      elements = elements.filter(el => el.side !== currentSide);
+      drawAll();
+    }
+
+    function switchSide() {
+  currentSide = currentSide === '1' ? '2' : '1';
+  drawAll();
+}
+
+
+    function downloadCanvas() {
+      const link = document.createElement('a');
+      link.download = `tshirt-${currentSide}.png`;
+      link.href = canvas.toDataURL();
+      link.click();
+    }
+
+    drawAll(); // Initial draw
+  </script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+/* BODY STYLES */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at 15% 30%, rgba(255, 0, 0, 0.2) 0%, transparent 40%),
+              radial-gradient(circle at 80% 90%, rgba(255, 0, 0, 0.2) 0%, transparent 40%),
+              #0b0c2a;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+/* NAVBAR DEFAULT */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 98px;
+  background-color: transparent;
+  
+  background: radial-gradient(circle at 15% 30%, rgba(255, 0, 0, 0.2) 0%, transparent 40%),
+              #0b0c2a;
+  padding: 0 40px;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+.navbar.scrolled {
+  background-color: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(15px); /* Stronger blur */
+}
+
+
+
+/* MENU STYLES */
+.menu {
+  display: flex;
+  gap: 56px;
+}
+.menu div {
+  font-size: 20px;
+  font-weight: 700;
+}
+.menu a {
+  color: #fff;
+  text-decoration: none;
+  position: relative;
+}
+.menu a::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #fff;
+  transition: width 0.3s;
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+}
+.menu a:hover::after {
+  width: 100%;
+}
+
+/* RIGHT SIDE BUTTONS */
+.button {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+.icon {
+  display: flex;
+  gap: 16px;
+}
+.search img,
+.shopping-bag {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+/* LOGO */
+.flex-fit {
+  font-size: 36px;
+  font-weight: 600;
+}
+.flex-fit-span {
+  color: #a9d6cb;
+}
+.flex-fit-span2 {
+  color: #ffffff;
+}
+.logo-link {
+  text-decoration: none !important;
+  color: inherit !important;
+  cursor: pointer;
+}
+
+/* SPACING FOR PAGE */
+.page-buffer {
+  height: 100px;
+}

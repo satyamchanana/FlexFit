@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FlexFit Product Page</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at 15% 30%, rgba(255, 0, 0, 0.2) 0%, transparent 40%),
+                  radial-gradient(circle at 80% 90%, rgba(255, 0, 0, 0.2) 0%, transparent 40%),
+                  #0b0c2a;
+      color: #ffffff;
+      overflow-x: hidden;
+      overflow-y:hidden;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 98px;
+      background-color: #00000000;
+      padding: 0 40px;
+      box-sizing: border-box;
+    }
+
+    .menu {
+      display: flex;
+      gap: 56px;
+    }
+
+    .menu div {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .menu a {
+      color: #fff;
+      text-decoration: none;
+      position: relative;
+    }
+
+    .menu a::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: #fff;
+      transition: width 0.3s;
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+    }
+
+    .menu a:hover::after {
+      width: 100%;
+    }
+
+    .button {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .icon {
+      display: flex;
+      gap: 16px;
+    }
+
+    .search img,
+    .shopping-bag {
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+    }
+
+    .flex-fit {
+      font-size: 36px;
+      font-weight: 600;
+    }
+
+    .flex-fit-span {
+      color: #a9d6cb;
+    }
+
+    .flex-fit-span2 {
+      color: #ffffff;
+    }
+
+    .logo-link {
+      text-decoration: none !important;
+      color: inherit !important;
+      cursor: pointer;
+    }
+
+    .page-buffer {
+      height: 100px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: calc(100vh - 100px);
+      position: relative;
+      left:-130px;
+    }
+
+    .red-box {
+      width: 400px;
+      height: 500px;
+      background-color: rgba(255, 0, 0, 0.35);
+      position: absolute;
+      left: 50%;
+      transform: translateX(-60%);
+      z-index: 0;
+      border-radius: 10%;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+    }
+
+    .blue-box {
+      width: 340px;
+      height: 420px;
+      background-color: rgba(8, 73, 186, 0.5);
+      position: absolute;
+      left: 50%;
+      transform: translateX(40%);
+      z-index: 1;
+      padding: 20px;
+      color: white;
+      border-radius: 10%;
+      box-shadow: 0 0 20px rgba(0, 191, 255, 0.4);
+    }
+
+    .tshirt {
+      width: 400px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-60%);
+      z-index: 2;
+    }
+
+    .color-options {
+      display: flex;
+      gap: 10px;
+      margin: 10px 0;
+    }
+
+    .color-circle {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 2px solid white;
+      cursor: pointer;
+    }
+
+    .color-circle.black {
+      background-color: black;
+    }
+
+    .color-circle.white {
+      background-color: white;
+    }
+
+    .color-circle.selected::after {
+      content: '';
+      display: block;
+      width: 14px;
+      height: 14px;
+      background: white;
+      border-radius: 50%;
+      margin: 7px auto;
+    }
+
+    .color-circle.white.selected::after {
+      background: black;
+    }
+
+    .size-options button {
+      margin: 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .action-buttons button {
+      padding: 8px 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .add-to-cart {
+      background-color: #ff3b3f;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 14px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .add-to-cart:hover {
+      background-color: #e62e2e;
+    }
+.image-gallery {
+  position: absolute;
+  left: 49%; /* shift it more to the left */
+  transform: translateX(-60%);
+  top: 60px; /* adjust vertically if needed */
+  width: 300px;
+  height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.03); /* optional */
+  border-radius: 10px;
+}
+
+.image-gallery img {
+  max-width: 280px;
+  max-height: 360px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  transition: opacity 0.3s ease-in-out;
+  display: block;
+}
+
+
+.arrow {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  padding: 8px 12px;
+  z-index: 10;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.arrow:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.arrow.left {
+  left: -35px;
+}
+
+.arrow.right {
+  right: -35px;
+}
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="flex-fit">
+      <a href="hero.html" class="logo-link">
+        <span class="flex-fit-span">Flex</span><span class="flex-fit-span2">Fit</span>
+      </a>
+    </div>
+
+    <div class="menu">
+      <div><a href="hero.html">Home</a></div>
+      <div><a href="product_polo.html">POLO</a></div>
+      <div><a href="product_roundneck.html">ROUND NECK</a></div>
+      <div><a href="ourdesigns.html">OUR DESIGNS</a></div>
+    </div>
+
+    <div class="button">
+      <div class="icon">
+        <div class="search">
+          <img src="images/layer-20.svg" alt="Search Icon"/>
+        </div>
+        <a href="cart.html">
+          <img class="shopping-bag" src="images/shopping-bag0.svg" alt="Shopping Bag"/>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-buffer"></div>
+
+  <!-- PRODUCT SECTION -->
+  <div class="container">
+    <div class="red-box"></div>
+    <img id="tshirt-img" class="tshirt" src="images/poloblack.png" alt=""/> <!-- might get som eroors-->
+    <div class="image-gallery">
+      <button class="arrow left" onclick="prevImage()">&#8592;</button>
+      
+      <img id="productImage" src="images/poloblack1.png" alt="Product Image">
+    
+      <button class="arrow right" onclick="nextImage()">&#8594;</button>
+    </div>
+    
+    <div class="blue-box">
+      <h2>FlexFit Polo</h2>
+      <p>₹799</p>
+      <label>Color:</label>
+      <div class="color-options">
+        <div class="color-circle black selected" onclick="switchColor('black')"></div>
+        <div class="color-circle white" onclick="switchColor('white')"></div>
+      </div>
+      <label>Size:</label>
+      <div class="size-options">
+        <button onclick="selectSize(this)">S</button>
+        <button onclick="selectSize(this)">M</button>
+        <button onclick="selectSize(this)">L</button>
+        <button onclick="selectSize(this)">XL</button>
+        <button onclick="selectSize(this)">XXL</button>
+      </div><br><br>
+
+      <div class="action-buttons">
+        <button onclick="addToCart()" class="add-to-cart">Add to Cart</button>
+        <button onclick="location.href='customize.html'">Customize</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const imageSets = {
+      black: [
+        "images/poloblack1.png",
+        "images/poloblack2.png"
+      ],
+      white: [
+        "images/polowhite1.png",
+        "images/polowhite2.png"
+      ]
+    };
+  
+    let currentColor = 'black';
+    let currentImage = 0;
+  
+    function showImage(index) {
+      const imageElement = document.getElementById("productImage");
+      imageElement.style.opacity = 0;
+      setTimeout(() => {
+        imageElement.src = imageSets[currentColor][index];
+        imageElement.style.opacity = 1;
+      }, 150);
+    }
+  
+    function nextImage() {
+      const images = imageSets[currentColor];
+      currentImage = (currentImage + 1) % images.length;
+      showImage(currentImage);
+    }
+  
+    function prevImage() {
+      const images = imageSets[currentColor];
+      currentImage = (currentImage - 1 + images.length) % images.length;
+      showImage(currentImage);
+    }
+  
+    function switchColor(color) {
+      const tshirt = document.getElementById('tshirt-img');
+      const blackBtn = document.querySelector('.color-circle.black');
+      const whiteBtn = document.querySelector('.color-circle.white');
+  
+      blackBtn.classList.remove('selected');
+      whiteBtn.classList.remove('selected');
+  
+      if (color === 'black') {
+        tshirt.src = 'images/poloblack.png';
+        blackBtn.classList.add('selected');
+      } else if (color === 'white') {
+        tshirt.src = 'images/polowhite.png';
+        whiteBtn.classList.add('selected');
+      }
+  
+      currentColor = color;
+      currentImage = 0;
+      showImage(currentImage);
+    }
+  
+    function selectSize(button) {
+      document.querySelectorAll('.size-options button').forEach(btn => {
+        btn.style.backgroundColor = '';
+        btn.style.color = '';
+      });
+      button.style.backgroundColor = 'white';
+      button.style.color = 'black';
+    }
+  
+    function addToCart() {
+      const productName = "FlexFit Polo";
+      const productPrice = 799;
+      const productImage = document.getElementById('tshirt-img')?.src || "";
+  
+      const selectedColor = currentColor.charAt(0).toUpperCase() + currentColor.slice(1);
+      const selectedSizeBtn = document.querySelector('.size-options button[style*="background-color: white"]');
+      const selectedSize = selectedSizeBtn ? selectedSizeBtn.innerText : 'M';
+  
+      const cartItem = {
+        name: `${productName} - ${selectedColor}`,
+        price: productPrice,
+        size: selectedSize,
+        image: productImage,
+      };
+  
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.push(cartItem);
+      localStorage.setItem('cart', JSON.stringify(cart));
+  
+      alert(`${cartItem.name} (Size: ${cartItem.size}) added to cart!`);
+    }
+  
+    // Initialize the gallery on page load
+    window.onload = () => {
+      showImage(currentImage);
+    };
+  </script>
+  
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FlexFit</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      border: none;
+      text-decoration: none;
+      background: none;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: "Poppins", sans-serif;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 98px;
+      background-color: #00000000;
+      padding: 0 40px;
+    }
+
+    .menu {
+      display: flex;
+      gap: 56px;
+    }
+
+    .menu div {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .menu a {
+      color: #fff;
+      text-decoration: none;
+      position: relative;
+    }
+
+    .menu a::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: #fff;
+      transition: width 0.3s;
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+    }
+
+    .menu a:hover::after {
+      width: 100%;
+    }
+
+    .button {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .icon {
+      display: flex;
+      gap: 16px;
+    }
+
+    .search img,
+    .shopping-bag {
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+    }
+
+    .flex-fit {
+      font-size: 36px;
+      font-weight: 600;
+    }
+
+    .flex-fit-span {
+      color: #a9d6cb;
+    }
+
+    .flex-fit-span2 {
+      color: #ffffff;
+    }
+
+    .logo-link {
+      text-decoration: none !important;
+      color: inherit !important;
+      cursor: pointer;
+    }
+
+    /* Hero section */
+    .hero {
+      position: relative;
+      height: 100vh;
+      width: 100vw;
+      background-image: url('images/herobg.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-top: 98px;
+      filter: brightness(1.05) contrast(1.1);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 0;
+    }
+
+    .you-dream-it-we-print-it {
+      color: #ffffff;
+      font-family: "TenorSans-Regular", sans-serif;
+      font-size: 64px;
+      text-align: center;
+      z-index: 1;
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    .frame-128 {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 14px 30px;
+      z-index: 1;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .shop-now {
+      color: #000;
+      font-family: "Italiana-Regular", sans-serif;
+      font-size: 28px;
+      letter-spacing: 0.2em;
+    }
+
+    .frame-128:hover {
+      background: #f0f0f0;
+    }
+
+    a.button-link {
+      text-decoration: none;
+    }
+
+  </style>
+</head>
+<body style="background: #000000">
+  <!-- Navbar -->
+  <!-- Navbar (same as previous page) -->
+<div class="navbar">
+  <div class="flex-fit">
+    <a href="hero.html" class="logo-link">
+      <span class="flex-fit-span">Flex</span><span class="flex-fit-span2">Fit</span>
+    </a>
+  </div>
+
+  <div class="menu">
+    <div><a href="hero.html">Home</a></div>
+    <div><a href="product_polo.html">POLO</a></div>
+    <div><a href="product_roundneck.html">ROUND NECK</a></div>
+    <div><a href="ourdesigns.html">OUR DESIGNS</a></div>
+  </div>
+
+  <div class="button">
+    <div class="icon">
+      <div class="search">
+        <img src="images/layer-20.svg" alt="Search Icon"/>
+      </div>
+      <!-- Cart Button -->
+      <a href="cart.html">
+        <img class="shopping-bag" src="images/shopping-bag0.svg" alt="Shopping Bag"/>
+      </a>
+    </div>
+  </div>
+</div>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="you-dream-it-we-print-it">You dream it. We print it</div>
+    <a href="ourdesigns.html" class="button-link">
+      <div class="frame-128">
+        <div class="shop-now">SHOP NOW</div>
+      </div>
+    </a>
+  </div>
+</body>
+</html>

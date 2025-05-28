@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FlexFit Payment</title>
+<link rel="stylesheet" href="navbar.css">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at 15% 30%, rgba(255, 0, 0, 0.2) 0%, transparent 40%),
+                  radial-gradient(circle at 80% 90%, rgba(255, 0, 0, 0.2) 0%, transparent 40%),
+                  #0b0c2a;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+
+    /* Payment Container */
+    .payment-container {
+      max-width: 500px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 25px;
+      border-radius: 10px;
+      margin-top: 100px;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+    }
+
+    .payment-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .tab-button {
+      width: 49%;
+      padding: 10px;
+      background-color: #333;
+      color: white;
+      border: none;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .tab-button.active {
+      background-color: #ff3b3f;
+    }
+
+    .payment-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    label {
+      font-size: 16px;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 14px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    input::placeholder {
+      color: #ccc;
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-top: -10px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .payment-btn {
+      padding: 12px;
+      font-size: 16px;
+      background-color: #ff3b3f;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .payment-btn:hover {
+      background-color: #e62e2e;
+    }
+
+    #successMessage {
+      text-align: center;
+      color: #00ffae;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="flex-fit">
+      <a href="hero.html" class="logo-link">
+        <span class="flex-fit-span">Flex</span><span class="flex-fit-span2">Fit</span>
+      </a>
+    </div>
+
+    <div class="menu">
+      <div><a href="hero.html">Home</a></div>
+      <div><a href="product_polo.html">POLO</a></div>
+      <div><a href="product_roundneck.html">ROUND NECK</a></div>
+      <div><a href="ourdesigns.html">OUR DESIGNS</a></div>
+    </div>
+
+    <div class="button">
+      <div class="icon">
+        <div class="search">
+          <img src="images/layer-20.svg" alt="Search Icon"/>
+        </div>
+        <a href="cart.html">
+          <img class="shopping-bag" src="images/shopping-bag0.svg" alt="Shopping Bag"/>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-buffer"></div> 
+
+  <!-- Payment Section -->
+  <div class="payment-container">
+    <h2>Free Payment Gateway</h2>
+
+    <div class="tabs">
+      <button class="tab-button active" onclick="showTab('card')">Pay with Card</button>
+      <button class="tab-button" onclick="showTab('upi')">Pay with UPI</button>
+    </div>
+
+    <!-- Card Form -->
+    <form id="cardForm" class="payment-form">
+      <label>Full Name</label>
+      <input type="text" id="cardName" placeholder="Your Name">
+      <label>Card Number</label>
+      <input type="text" id="cardNumber" maxlength="16" placeholder="**** **** **** 1234">
+      <label>Expiry Date</label>
+      <input type="month" id="expiryDate">
+      <label>CVV</label>
+      <input type="password" id="cvv" maxlength="3" placeholder="123">
+      <p class="error" id="cardError"></p>
+      <button type="submit" class="payment-btn">Pay Now</button>
+    </form>
+
+    <!-- UPI Form -->
+    <form id="upiForm" class="payment-form hidden">
+      <label>UPI ID</label>
+      <input type="text" id="upiId" placeholder="yourname@upi">
+      <p class="error" id="upiError"></p>
+      <button type="submit" class="payment-btn">Pay Now</button>
+    </form>
+
+    <!-- Success Message -->
+    <div id="successMessage" class="hidden">
+      <h3>Payment Successful!</h3>
+      <p>This is a free simulated transaction.</p>
+    </div>
+  </div>
+
+  <script>
+
+    function showTab(mode) {
+      const cardForm = document.getElementById('cardForm');
+      const upiForm = document.getElementById('upiForm');
+      const cardTab = document.querySelector('.tab-button:nth-child(1)');
+      const upiTab = document.querySelector('.tab-button:nth-child(2)');
+
+      if (mode === 'card') {
+        cardForm.classList.remove('hidden');
+        upiForm.classList.add('hidden');
+        cardTab.classList.add('active');
+        upiTab.classList.remove('active');
+      } else {
+        upiForm.classList.remove('hidden');
+        cardForm.classList.add('hidden');
+        upiTab.classList.add('active');
+        cardTab.classList.remove('active');
+      }
+
+      document.getElementById('cardError').textContent = '';
+      document.getElementById('upiError').textContent = '';
+    }
+
+    // Card Form Submit
+    document.getElementById('cardForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const name = document.getElementById('cardName').value.trim();
+      const number = document.getElementById('cardNumber').value.trim();
+      const expiry = document.getElementById('expiryDate').value;
+      const cvv = document.getElementById('cvv').value.trim();
+      const cardError = document.getElementById('cardError');
+
+      const isNumberValid = /^\d{16}$/.test(number);
+      const isCVVValid = /^\d{3}$/.test(cvv);
+
+      if (!name || !isNumberValid || !expiry || !isCVVValid) {
+        cardError.textContent = 'Please enter valid card details (numbers only).';
+      } else {
+        cardError.textContent = '';
+        showSuccess();
+      }
+    });
+
+    // UPI Form Submit
+    document.getElementById('upiForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const upi = document.getElementById('upiId').value.trim();
+      const pattern = /^[a-zA-Z0-9.\-_]{2,}@[a-zA-Z]{3,}$/;
+      const upiError = document.getElementById('upiError');
+
+      if (!upi || !pattern.test(upi)) {
+        upiError.textContent = 'Enter a valid UPI ID.';
+      } else {
+        upiError.textContent = '';
+        showSuccess();
+      }
+    });
+
+    function showSuccess() {
+      document.getElementById('cardForm').classList.add('hidden');
+      document.getElementById('upiForm').classList.add('hidden');
+      document.querySelector('.tabs').classList.add('hidden');
+      document.getElementById('successMessage').classList.remove('hidden');
+
+      setTimeout(function () {
+        window.location.href = 'ordertracking.html';
+      }, 3500);
+    }
+  </script>
+  
+<script src="navbar.js"></script>
+</body>
+</html>
